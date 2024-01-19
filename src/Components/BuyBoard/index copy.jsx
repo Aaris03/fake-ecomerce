@@ -9,7 +9,7 @@ import { dateFormat } from "../../Utils"
 const BuyBoard = () => {
     const context = useContext(ShoppingCartContext)
 
-    /*const addOrderToOrders = () => {
+    const addOrderToOrders = () => {
         if(ordersExist()){
             const data = localStorage.getItem("orders");
             let myOrders = JSON.parse(data);
@@ -47,12 +47,17 @@ const BuyBoard = () => {
             createdAt: dateFormat()
         }
         context.setMyOrder(order)
-    }*/
+    }
 
     return (
         <>
             <section className="buy-order-section">
                 <div className="buy-order-items-box">
+                {   context.cart.length === 0 ? <p>No tienes productos en el carro</p> :
+                    context.cart?.map((item)=>{
+                        return <BuyItem key={item.id} item={item}></BuyItem>
+                    })
+                }
                 </div>
                 <div className="agree-box">
                     <div className="total-order-box">
@@ -69,7 +74,11 @@ const BuyBoard = () => {
                         </div>
                     </div>
                     <Link to="/my-orders">
-                        <button></button>
+                        <button disabled={
+                            context.cart.length === 0 ? "disabled" : ""
+                            } onMouseEnter={()=>createOrder()} onClick={()=>addOrderToOrders()}>
+                            Buy
+                        </button>    
                     </Link>
                         
                 </div>
