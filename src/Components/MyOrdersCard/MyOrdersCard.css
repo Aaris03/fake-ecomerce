@@ -1,0 +1,9 @@
+.order-card-container{
+    width: 90%;
+    box-shadow: 0px 0px 11px 2px #c8c7c7;
+    margin: 1rem 0rem;
+    padding: 1rem;
+}
+.order-card-container img{
+    width: 50px;
+}

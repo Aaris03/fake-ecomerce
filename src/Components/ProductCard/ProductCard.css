@@ -1,0 +1,104 @@
+.product-card{
+    margin: 10px 0px;
+    justify-self: center;
+}
+.product-card figure{
+    width: 250px;
+    height: 250px;
+    position: relative;
+}
+.product-card figure img{
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.interaction-box{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: 5px;
+    top: 5px;
+    z-index: 1;
+}
+.visible-btn-product{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: 0px;
+    top: 0px;
+    background-color: white;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    z-index: 2;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.add-btn-product,
+.delete-btn-product{
+    position: absolute;
+    background: rgb(255 255 255 / 50%);
+    padding: 0px 8px;
+    display: none;
+    opacity: 0;
+    transition: .2s;
+    -webkit-transition: .2s;
+    -moz-transition: .2s;
+    -ms-transition: .2s;
+    -o-transition: .2s;
+}
+.add-btn-product{
+    top: 0px;
+    left: 25px;
+}
+.delete-btn-product{
+    top: 35px;
+    left: -2px;
+}
+.delete-btn-product:hover,
+.add-btn-product:hover{
+    background-color: black;
+    color: white;
+    display: block;
+    opacity: 1;
+}
+.interaction-box:hover button{
+    display: block;
+    opacity: 1;
+}
+.interaction-box:hover{
+    width: 150px;
+    height: 65px;
+}
+.product-card figure figcaption{
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    background: rgb(255 255 255 / 50%);
+    padding: 0px 8px;
+    border-radius: 10px;
+}
+.product-card figure img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.cardProduct__aux-row{
+    display: flex;
+}
+.cardProduct__aux-row p{
+    width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.cardProduct__aux-row strong{
+    width: 100px;
+    text-align: end;
+}
