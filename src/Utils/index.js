@@ -15,3 +15,21 @@ export const dateFormat = () => {
 
     return `${day}/${month}/${year}`
 }
+
+export const createOrder = (context) => {
+    let id = 0;
+    if(ordersExist()){
+        const data = localStorage.getItem("orders");
+        let myOrders = JSON.parse(data);
+        id = myOrders[0].id+1
+    }
+
+    const order = {
+        id: id,
+        orderItem: context.cart,
+        total: context.totalOrder,
+        createdAt: dateFormat()
+    }
+    console.log(order)
+    context.setMyOrder(order)
+}

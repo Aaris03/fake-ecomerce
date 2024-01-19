@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom"
 import "./Navbar.css"
 import { useContext } from "react"
 import { ShoppingCartContext } from "../../Context"
+import { createOrder } from "../../Utils"
 
 const NavBar = () => {
     const context = useContext(ShoppingCartContext)
@@ -128,7 +129,10 @@ const NavBar = () => {
                             Add Product
                         </NavLink>
                     </li>
-                    <li onClick={calculateTotalOrder}>
+                    <li onClick={()=>{
+                        calculateTotalOrder()
+                        createOrder(context)
+                    }}>
                         <NavLink to="/my-order-cart" style={({isActive}) =>
                         isActive ? activeStyle : undefined
                         } className={({isActive}) => isActive ? "font-bold" : ""}>

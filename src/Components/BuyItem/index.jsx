@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../Context";
+import { createOrder } from "../../Utils"
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import "./BuyItem.css"
 
@@ -29,7 +30,10 @@ const BuyItem = (item) => {
                 </figure>
                 <p>{item.item.title}</p>
                 <p>{item.item.price}</p>
-                <XMarkIcon className="w-6 cursor-pointer" onClick={()=>deleteProductToCart(item.item)}/>
+                <XMarkIcon className="w-6 cursor-pointer" onClick={()=>{
+                    deleteProductToCart(item.item)
+                    createOrder(context)
+                }}/>
             </div>
         </>
     )

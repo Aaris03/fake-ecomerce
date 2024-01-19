@@ -4,12 +4,12 @@ import { ShoppingCartContext } from "../../Context";
 import "./BuyBoard.css"
 import BuyItem from "../BuyItem";
 import { ordersExist } from "../../Utils"
-import { dateFormat } from "../../Utils"
 
 const BuyBoard = () => {
     const context = useContext(ShoppingCartContext)
 
     const addOrderToOrders = () => {
+
         if(ordersExist()){
             const data = localStorage.getItem("orders");
             let myOrders = JSON.parse(data);
@@ -28,31 +28,17 @@ const BuyBoard = () => {
         context.setCart([]);
         context.setCount(0);
         context.setTotalOrder(0);
-
-        //window.location.pathname = "/my-orders";
-    }
-
-    const createOrder = () => {
-        let id = 0;
-        if(ordersExist()){
-            const data = localStorage.getItem("orders");
-            let myOrders = JSON.parse(data);
-            id = myOrders[0].id+1
-        }
-
-        const order = {
-            id: id,
-            orderItem: context.cart,
-            total: context.totalOrder,
-            createdAt: dateFormat()
-        }
-        context.setMyOrder(order)
     }
 
     return (
         <>
             <section className="buy-order-section">
                 <div className="buy-order-items-box">
+                    {   context.cart.length === 0 ? <p>No tienes productos en el carro</p> :
+                        context.cart?.map((item)=>{
+                            return <BuyItem key={item.id} item={item}></BuyItem>
+                        })
+                    }
                 </div>
                 <div className="agree-box">
                     <div className="total-order-box">
@@ -68,10 +54,10 @@ const BuyBoard = () => {
                             <p>${context.totalOrder}</p>
                         </div>
                     </div>
-                    <Link to="/my-orders">
+                    <Link>
                         <button disabled={
                             context.cart.length === 0 ? "disabled" : ""
-                            } onMouseEnter={()=>createOrder()} onClick={()=>addOrderToOrders()}>
+                            } onClick={()=>addOrderToOrders()}>
                             Buy
                         </button>    
                     </Link>
