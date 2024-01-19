@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../Context";
 import "./BuyBoard.css"
@@ -28,7 +29,7 @@ const BuyBoard = () => {
         context.setCount(0);
         context.setTotalOrder(0);
 
-        window.location.pathname = "/my-orders";
+        //window.location.pathname = "/my-orders";
     }
 
     const createOrder = () => {
@@ -72,12 +73,14 @@ const BuyBoard = () => {
                             <p>${context.totalOrder}</p>
                         </div>
                     </div>
-                    
-                    <button disabled={
-                        context.cart.length === 0 ? "disabled" : ""
-                    } onMouseEnter={()=>createOrder()} onClick={()=>addOrderToOrders()}>
-                        Buy
-                    </button>
+                    <Link to="/my-orders">
+                        <button disabled={
+                            context.cart.length === 0 ? "disabled" : ""
+                            } onMouseEnter={()=>createOrder()} onClick={()=>addOrderToOrders()}>
+                            Buy
+                        </button>    
+                    </Link>
+                        
                 </div>
             </section>
         </>
