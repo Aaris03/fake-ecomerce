@@ -76,7 +76,7 @@ const BuyBoard = () => {
                     <Link to="/my-orders">
                         <button disabled={
                             context.cart.length === 0 ? "disabled" : ""
-                            } onMouseEnter={()=>createOrder()} onClick={()=>addOrderToOrders()}>
+                            } /**onMouseEnter={()=>createOrder()}**/ onClick={()=>addOrderToOrders()}>
                             Buy
                         </button>    
                     </Link>
