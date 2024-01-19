@@ -32,7 +32,7 @@ function Home() {
       const searchLowerTitle = item.title.toLowerCase();
       const searchLowerCategory = item.category.name.toLowerCase();
 
-      if(searchLowerTitle.includes(filterParams) ||searchLowerCategory.includes(filterParams)){
+      if(searchLowerTitle.includes(filterParams.toLowerCase()) ||searchLowerCategory.includes(filterParams.toLowerCase())){
         return item
       }
     })

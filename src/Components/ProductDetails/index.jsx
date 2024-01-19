@@ -9,7 +9,7 @@ const ProductDetails = () => {
 
     return(
         <>
-            <aside className={`product-details-section ${!context.detailsOpen ? "hide": ""} p-5` }>
+            <aside className={`product-details-section ${!context.detailsOpen ? "hide": ""}`}>
                 <div className="flex justify-between my-4">
                     <p className="font-bold text-lg">Details</p>
                     <XMarkIcon className="w-6 cursor-pointer" onClick={context.closeAsideDetails}/>
