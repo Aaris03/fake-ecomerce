@@ -9,7 +9,7 @@ import { dateFormat } from "../../Utils"
 const BuyBoard = () => {
     const context = useContext(ShoppingCartContext)
 
-    /*const addOrderToOrders = () => {
+    const addOrderToOrders = () => {
         if(ordersExist()){
             const data = localStorage.getItem("orders");
             let myOrders = JSON.parse(data);
@@ -47,7 +47,7 @@ const BuyBoard = () => {
             createdAt: dateFormat()
         }
         context.setMyOrder(order)
-    }*/
+    }
 
     return (
         <>
