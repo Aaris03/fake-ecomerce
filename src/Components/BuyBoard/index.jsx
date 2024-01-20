@@ -54,7 +54,7 @@ const BuyBoard = () => {
                             <p>${context.totalOrder}</p>
                         </div>
                     </div>
-                    <Link>
+                    <Link to={"/my-orders"}>
                         <button disabled={
                             context.cart.length === 0 ? "disabled" : ""
                             } onClick={()=>addOrderToOrders()}>

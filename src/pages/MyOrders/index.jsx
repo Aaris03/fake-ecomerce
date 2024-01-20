@@ -19,7 +19,7 @@ function MyOrders() {
       context.setMyOrders([])
     }
   }
-  console.log(context.myOrders)
+
   useEffect(()=> {
     getOrdersToDB()
   },[])

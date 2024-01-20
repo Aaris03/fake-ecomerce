@@ -9,10 +9,15 @@ function Home() {
 
   const context = useContext(ShoppingCartContext)
 
-  // Items filtrados de home
-  const [filterItems , setFilterItems] = useState([])
-
   const [inputEmpty , setInputEmpty] = useState(true)
+
+  useEffect(() => {
+    fetch("https://api.escuelajs.co/api/v1/products")
+    .then(res => res.json())
+    .then(data => {
+        context.setItems(data)
+    })
+  }, [])
 
   const baseArray = context.items;
   
@@ -36,31 +41,29 @@ function Home() {
         return item
       }
     })
-    setFilterItems(searching)
+    context.setFilterItems(searching)
   }
 
   return (
-    <>
       <Layout>
-        <p className='font-bold text-lg my-3'>Exclusive products</p> 
-        <input type="text" className='search-products-home-input' onChange={(e)=>handleFilterItems(e, baseArray)} placeholder='Search products'/>
+          <p className='font-bold text-lg my-3'>Exclusive products</p> 
+          <input type="text" className='search-products-home-input' onChange={(e)=>handleFilterItems(e, baseArray)} placeholder='Search products'/>
         <section className='all-products-section'>
           <section className='all-products-box'>
             {
               !inputEmpty ? 
-                filterItems.length > 0 ?
-                  filterItems?.map(item=>{
+                context.filterItems.length > 0 ?
+                  context.filterItems?.map(item=>{
                     return <ProductCard key={item.id} product={item}/>
-                  }): <p>No existen coincidencias de busqueda</p> :
-                  context.items?.map(item=>{
-                    return <ProductCard key={item.id} product={item}/>
-                  })
+                  }): <p>No existen coincidencias de busqueda</p> 
+                  : context.items?.map(item=>{
+                  return <ProductCard key={item.id} product={item}/>
+                })
             }
           </section>
           <ProductDetails></ProductDetails>
         </section>
       </Layout>
-    </>
   )
 }
 

@@ -9,14 +9,6 @@ export const ShoppingCartProvider = ({children}) => {
     // Todos los productos traidos en home
     const [items, setItems] = useState(null);
 
-    useEffect(() => {
-        fetch("https://api.escuelajs.co/api/v1/products")
-        .then(res => res.json())
-        .then(data => {
-          setItems(data)
-        })
-      }, [])
-
     // Todos los productos traidos en clothes
     const [itemsClothes, setItemsClothes] = useState(null);
 
@@ -57,6 +49,9 @@ export const ShoppingCartProvider = ({children}) => {
     //Ordenes en la seccion de My Orders - Localstorage
     const [myOrders, setMyOrders] = useState([])
 
+    // Items filtrados de home
+     const [filterItems , setFilterItems] = useState([])
+
     return (
     
         <ShoppingCartContext.Provider value={{
@@ -89,7 +84,9 @@ export const ShoppingCartProvider = ({children}) => {
             itemsShoes,
             setItemsShoes,
             itemsMiscellaneous,
-            setItemsMiscellaneous
+            setItemsMiscellaneous,
+            filterItems,
+            setFilterItems
 
         }}>
             {children}

@@ -1,8 +1,11 @@
+import { useContext } from 'react'
+import { ShoppingCartContext } from '../../Context';
 import { useForm } from 'react-hook-form'
 import './AddProductForm.css'
 
 function AddProductForm(){
     const { register, handleSubmit, formState:{errors}, reset } = useForm()
+    const context = useContext(ShoppingCartContext)
 
     const sendProduct =  handleSubmit((data)=>{
       const product = {
@@ -25,7 +28,8 @@ function AddProductForm(){
             if (!data.ok) {
                 throw Error(data.status);
             }
-        }).then(update => {
+        }).then(() => {
+            context.setFilterItems(product)
             alert("Se creo el producto!!!");
             reset();
         }).catch(e => {

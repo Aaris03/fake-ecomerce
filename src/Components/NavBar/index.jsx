@@ -48,15 +48,14 @@ const NavBar = () => {
     }
 
     return (
-        <nav className="nav-bar-container">
+        <nav className="nav-bar-container" >
             <div className="w-full flex relative items-center">
                 <div className="z-10 mr-2 " onClick={openNav}>
                     <NavLink>
                         <p className="font-bold text-xl">Shopi</p>
                     </NavLink>
                 </div>
-                <ul className="nav__categories">
-                    
+                <ul className="nav__categories" onClick={context.closeAsideDetails}>
                     <li>
                         <NavLink to="/" style={({isActive}) =>
                         isActive ? activeStyle : undefined
@@ -100,7 +99,7 @@ const NavBar = () => {
                         </NavLink>
                     </li>
                 </ul>
-                <ul className="flex w-full justify-end nav__personal">
+                <ul className="flex w-full justify-end nav__personal" onClick={context.closeAsideDetails}>
                     <li>
                         <NavLink to="/my-orders" style={({isActive}) =>
                         isActive ? activeStyle : undefined

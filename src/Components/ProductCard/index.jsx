@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import { ShoppingCartContext } from '../../Context';
 import { PlusIcon } from '@heroicons/react/24/solid';
 import { CheckIcon } from '@heroicons/react/24/solid';
+import { addProductToCart } from "../../Utils"
+import { existInCart } from "../../Utils"
 import './ProductCard.css';
 
 function ProductCard(product) {
@@ -22,7 +24,7 @@ function ProductCard(product) {
       const array = context.items.filter((item)=>{
         return item.id !== id 
       });
-    
+      
       fetch("https://api.escuelajs.co/api/v1/products/"+id, {
         method: 'DELETE',
         headers: {
@@ -46,29 +48,7 @@ function ProductCard(product) {
       context.setProductDetails(data)
     }
   }
-
-  const existInCart = (product) => { 
-    const addCart = context.cart
-    const validate = addCart.find((item)=>item.id === product.id)
-
-    return validate === undefined
-  }
-
-  const addProductToCart = (product) => {
-    let addCart = context.cart
-    if(existInCart(product)){
-      addCart.push(product)
-      context.setCart(addCart)
-      context.setCount(context.count + 1)
-    }else{  
-      const array = context.cart;
-      const index = array.indexOf(product);
-      array.splice(index,1);
-
-      context.setCart(array)
-      context.setCount(context.count - 1)
-    }
-  }
+  
   
   return (
     <>
@@ -76,17 +56,16 @@ function ProductCard(product) {
             <figure >
                 <div className='interaction-box'>
                     <div className={`visible-btn-product  ${
-                      existInCart(product.product) ? "hover:bg-black":"bg-green-500"
+                      existInCart(product.product, context.cart) ? "hover:bg-black":"bg-green-500"
                     }`}>
-                      {existInCart(product.product) ? 
+                      {existInCart(product.product, context.cart) ? 
                       <PlusIcon className='hover:text-white'></PlusIcon>  : <CheckIcon className='text-white'></CheckIcon>}
-                      
                     </div>
                     <button className={`add-btn-product ${
-                      existInCart(product.product)? "" : "left-2"
+                      existInCart(product.product, context.cart)? "" : "left-2"
                     }`} onClick={()=>{
-                    addProductToCart(product.product)
-                    }}>{existInCart(product.product)? "Add to cart" : "Delete to cart" }</button>
+                    addProductToCart(product.product,context.cart, context)
+                    }}>{existInCart(product.product,  context.cart)? "Add to cart" : "Delete to cart" }</button>
                     <button className='delete-btn-product' onClick={()=>handleItems(product.product.id)}>Delete product</button>
                 </div>
                  <img id={"imgP"+product.product.id} src={product.product.images[0].replace(`["`,"").replace(`"]`, "")} alt={product.product.description} />
