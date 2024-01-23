@@ -1,0 +1,29 @@
+.login-section{
+    width: 80%;
+    margin-top: 1rem;
+}
+.login-btn{
+   width: 100%;
+   background-color: black;
+   color: white;
+   padding: .75rem;
+   border-radius: 8px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   -ms-border-radius: 8px;
+   -o-border-radius: 8px;
+}
+.sign-up-btn{
+    width: 100%;
+    background-color: white;
+    border: 1px solid black;
+    padding: .75rem;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+.login-btn:disabled{
+    background-color: gray; 
+}

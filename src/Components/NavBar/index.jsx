@@ -47,6 +47,10 @@ const NavBar = () => {
         context.setTotalOrder(total)
     }
 
+    const signOut = () => {
+        context.setActiveSession(false)
+    }
+
     return (
         <nav className="nav-bar-container" >
             <div className="w-full flex relative items-center">
@@ -101,32 +105,49 @@ const NavBar = () => {
                 </ul>
                 <ul className="flex w-full justify-end nav__personal" onClick={context.closeAsideDetails}>
                     <li>
-                        <NavLink to="/my-orders" style={({isActive}) =>
-                        isActive ? activeStyle : undefined
-                        } className={({isActive}) => isActive ? "font-bold" : ""}>
-                            My Orders
-                        </NavLink>
+                        {
+                            context.activeSession ?
+                            <NavLink to="/my-orders" style={({isActive}) =>
+                            isActive ? activeStyle : undefined
+                            } className={({isActive}) => isActive ? "font-bold" : ""}>
+                                My Orders
+                            </NavLink> : "" 
+                        }
                     </li>
                     <li>
-                        <NavLink to="/my-account" style={({isActive}) =>
-                        isActive ? activeStyle : undefined
-                        } className={({isActive}) => isActive ? "font-bold" : ""}>
-                            My Account
-                        </NavLink>
+                        {
+                            context.activeSession ?
+                            <NavLink to="/my-account" style={({isActive}) =>
+                            isActive ? activeStyle : undefined
+                            } className={({isActive}) => isActive ? "font-bold" : ""}>
+                                My Account
+                            </NavLink> : ""
+                        }
                     </li>
                     <li>
-                        <NavLink to="/sign-in" style={({isActive}) =>
-                        isActive ? activeStyle : undefined
-                        } className={({isActive}) => isActive ? "font-bold" : ""}>
-                            Sign In
-                        </NavLink>
+                        {
+                            context.activeSession ?
+                            <NavLink to="/add-product" style={({isActive}) =>
+                            isActive ? activeStyle : undefined
+                            } className={({isActive}) => isActive ? "font-bold" : ""}>
+                                Add Product
+                            </NavLink> : ""
+                        }
                     </li>
                     <li>
-                        <NavLink to="/add-product" style={({isActive}) =>
-                        isActive ? activeStyle : undefined
-                        } className={({isActive}) => isActive ? "font-bold" : ""}>
-                            Add Product
-                        </NavLink>
+                        {
+                            context.activeSession ?
+                            <NavLink to="/sign-in" style={({isActive}) =>
+                            isActive ? activeStyle : undefined
+                            } className={({isActive}) => isActive ? "font-bold" : ""} onClick={()=> signOut()}>
+                                Sign out
+                           </NavLink>    
+                            : <NavLink to="/sign-in" style={({isActive}) =>
+                             isActive ? activeStyle : undefined
+                             } className={({isActive}) => isActive ? "font-bold" : ""}>
+                                 Sign In
+                            </NavLink>
+                        }
                     </li>
                     <li onClick={()=>{
                         calculateTotalOrder()

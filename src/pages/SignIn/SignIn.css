@@ -1,3 +1,15 @@
-.bg6{
-    background-color: crimson;
+.sign-in-section{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+@media only screen and (min-width: 600px) {
+    .sign-in-section{
+        width: 60%;
+    }
+}
+@media only screen and (min-width: 1000px) {
+    .sign-in-section{
+        width: 40%;
+    }
 }

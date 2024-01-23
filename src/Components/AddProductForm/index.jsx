@@ -15,7 +15,6 @@ function AddProductForm(){
         categoryId: data.categoryId,
         images: [data.images]
       }
-      console.log(product)
   
       fetch("https://api.escuelajs.co/api/v1/products/",{
         method: 'POST',
@@ -120,8 +119,6 @@ function AddProductForm(){
                         value: true,
                         message: "La imagen del producto es requerido"
                     },
-                    /*pattern: /.*(png|jpg|jpeg|gif)$/,
-                    message: "La url de la imagen no es valida"*/
                     validate: (value) => {
                         if (value.includes(".gif") && value.includes("http")) {
                             return true

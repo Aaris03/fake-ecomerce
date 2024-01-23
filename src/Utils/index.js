@@ -55,3 +55,11 @@ export const addProductToCart = (product, contextCart, context) => {
       context.setCount(context.count - 1)
     }
 }
+
+export const handleGetUsers = () => {
+    const users = localStorage.getItem('users')
+
+    const parseUsers = JSON.parse(users)
+
+    return parseUsers
+}

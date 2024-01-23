@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 export const ShoppingCartContext = createContext();
 
@@ -50,7 +50,10 @@ export const ShoppingCartProvider = ({children}) => {
     const [myOrders, setMyOrders] = useState([])
 
     // Items filtrados de home
-     const [filterItems , setFilterItems] = useState([])
+    const [filterItems , setFilterItems] = useState([])   
+    
+    // 
+    const [ activeSession, setActiveSession] = useState(false)
 
     return (
     
@@ -86,7 +89,9 @@ export const ShoppingCartProvider = ({children}) => {
             itemsMiscellaneous,
             setItemsMiscellaneous,
             filterItems,
-            setFilterItems
+            setFilterItems,
+            activeSession,
+            setActiveSession,
 
         }}>
             {children}
