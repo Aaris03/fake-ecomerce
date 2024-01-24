@@ -3,6 +3,7 @@ import { ShoppingCartContext } from '../../Context';
 import Layout from '../../Components/Layout'
 import ProductDetails from '../../Components/ProductDetails';
 import ProductCard from '../../Components/ProductCard'
+import { Navigate } from 'react-router-dom';
 import './Clothes.css'
 
 const Clothes = () => {
@@ -17,8 +18,11 @@ const Clothes = () => {
       })
     }, [])
 
+    if(!context.activeSession){
+      return <Navigate to='/sign-in' replace={true} />
+    }
+
   return (
-  <>
       <Layout>
         <p className='font-bold text-lg my-3'>Clothes</p>
         <section className='all-products-section'>
@@ -31,8 +35,7 @@ const Clothes = () => {
         </section>
         <ProductDetails></ProductDetails>
       </section>
-      </Layout>
-  </>
+    </Layout>
   )
 }
 

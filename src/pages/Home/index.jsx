@@ -4,6 +4,7 @@ import ProductCard from '../../Components/ProductCard'
 import { ShoppingCartContext } from '../../Context';
 import './Home.css'
 import ProductDetails from '../../Components/ProductDetails';
+import { Navigate } from 'react-router-dom';
 
 function Home() {
 
@@ -18,6 +19,10 @@ function Home() {
         context.setItems(data)
     })
   }, [])
+
+  if(!context.activeSession){
+    return <Navigate to='/sign-in' replace={true} />
+  }
 
   const baseArray = context.items;
   

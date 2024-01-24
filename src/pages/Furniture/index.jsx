@@ -3,6 +3,7 @@ import { ShoppingCartContext } from '../../Context';
 import Layout from '../../Components/Layout'
 import ProductDetails from '../../Components/ProductDetails';
 import ProductCard from '../../Components/ProductCard'
+import { Navigate } from 'react-router-dom';
 import './Furniture.css'
 
 const Furniture = () => {
@@ -10,12 +11,16 @@ const Furniture = () => {
   const context = useContext(ShoppingCartContext)
 
   useEffect(() => {
-      fetch("https://api.escuelajs.co/api/v1/products/?categoryId=3")
-      .then(res => res.json())
-      .then(data => {
-        context.setItemsFurniture(data)
-      })
-    }, [])
+    fetch("https://api.escuelajs.co/api/v1/products/?categoryId=3")
+    .then(res => res.json())
+    .then(data => {
+      context.setItemsFurniture(data)
+    })
+  }, [])
+
+  if(!context.activeSession){
+    return <Navigate to='/sign-in' replace={true} />
+  }
 
   return (
   <>

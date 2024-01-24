@@ -1,7 +1,6 @@
 import { BrowserRouter, useRoutes } from 'react-router-dom'
 import { ShoppingCartProvider } from '../../Context'
 import { ShoppingCartContext } from "../../Context";
-import { useNavigate } from "react-router-dom";
 import { useContext } from 'react'
 import Home from '../Home'
 import MyAccount from '../MyAccount'
@@ -19,22 +18,21 @@ import Miscellaneous from "../Miscellaneous"
 import './App.css'
 
 const AppRoutes = () => {
-  const navigate = useNavigate();
 
   const context = useContext(ShoppingCartContext)
   
   let routes = useRoutes([
-    {path: "/", element: context.activeSession ? <Home/> : <SignIn/>},
-    {path: "my-order-cart", element: context.activeSession ? <MyOrderCart/> : <SignIn/>},
-    {path: "my-orders",element: context.activeSession ? <MyOrders/> : <SignIn/>},
-    {path: "clothes",element:context.activeSession ? <Clothes/> : <SignIn/>},
-    {path: "electronics",element:context.activeSession ? <Electronics/> : <SignIn/>},
-    {path: "furniture",element:context.activeSession ? <Furniture/> : <SignIn/>},
-    {path: "shoes",element:context.activeSession ? <Shoes/> : <SignIn/>},
-    {path: "miscellaneous",element:context.activeSession ? <Miscellaneous/> : <SignIn/>},
-    {path: "my-account",element:context.activeSession ? <MyAccount/> : <SignIn/>},
-    {path: "sign-in",element: <SignIn/>},
-    {path: "add-product",element:context.activeSession ? <AddProduct/> : <SignIn/>},
+    {path: "/", element: <Home/>},
+    {path: "my-order-cart", element:<MyOrderCart/>},
+    {path: "my-orders",element:<MyOrders/>},
+    {path: "clothes", element: <Clothes/>},
+    {path: "electronics",element:<Electronics/>},
+    {path: "furniture",element:<Furniture/>},
+    {path: "shoes",element: <Shoes/>},
+    {path: "miscellaneous",element:<Miscellaneous/>},
+    {path: "my-account",element:<MyAccount/>},
+    {path: "/sign-in",element: <SignIn/>},
+    {path: "add-product",element:<AddProduct/>},
     {path: "*",element: <NotFound/>},
   ])
 
