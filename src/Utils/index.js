@@ -23,6 +23,8 @@ export const createOrder = (context) => {
         let myOrders = JSON.parse(data);
         id = myOrders[0].id+1
     }
+    console.log(context.totalOrder)
+    console.log(context.cart)
     const order = {
         id: id,
         orderItem: context.cart,

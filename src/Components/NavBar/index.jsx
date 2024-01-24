@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom"
 import "./Navbar.css"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { ShoppingCartContext } from "../../Context"
 import { createOrder } from "../../Utils"
 
@@ -50,6 +50,10 @@ const NavBar = () => {
     const signOut = () => {
         context.setActiveSession(false)
     }
+
+    useEffect(()=>{
+        createOrder(context)
+    },[context.totalOrder])
 
     return (
         <nav className="nav-bar-container" >

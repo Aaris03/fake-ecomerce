@@ -1,7 +1,5 @@
 import { BrowserRouter, useRoutes } from 'react-router-dom'
 import { ShoppingCartProvider } from '../../Context'
-import { ShoppingCartContext } from "../../Context";
-import { useContext } from 'react'
 import Home from '../Home'
 import MyAccount from '../MyAccount'
 import MyOrders from '../MyOrders'
@@ -18,8 +16,6 @@ import Miscellaneous from "../Miscellaneous"
 import './App.css'
 
 const AppRoutes = () => {
-
-  const context = useContext(ShoppingCartContext)
   
   let routes = useRoutes([
     {path: "/", element: <Home/>},

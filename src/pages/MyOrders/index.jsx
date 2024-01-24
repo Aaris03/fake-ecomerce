@@ -9,7 +9,6 @@ function MyOrders() {
   const context = useContext(ShoppingCartContext);
 
   const getOrdersToDB = () => {
-
     if(ordersExist()){
       const data = localStorage.getItem("orders");
       const myOrders = JSON.parse(data);
@@ -24,21 +23,18 @@ function MyOrders() {
     getOrdersToDB()
   },[])
 
-
   return (
-    <>
-      <Layout>
-        <p>My Orders</p>
-        <section className='my-orders-section'>
-          {
-            context.myOrders? context.myOrders.map(item=>{
-              return <MyOrdersCard key={item.id} order={item}></MyOrdersCard>
-            }) : ""
-          }
-        </section>
-        
-      </Layout>
-    </>
+    <Layout>
+      <p>My Orders</p>
+      <section className='my-orders-section'>
+        {
+          context.myOrders? context.myOrders.map(item=>{
+            return <MyOrdersCard key={item.id} order={item}></MyOrdersCard>
+          }) : ""
+        }
+      </section>
+      
+    </Layout>
   )
 }
 
